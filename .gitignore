@@ -33,7 +33,7 @@
 *.vrb
 *.xdy
 *.tdo
-
+*.pdf
 
 ### Vim ###
 [._]*.s[a-w][a-z]
