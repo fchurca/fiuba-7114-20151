@@ -1,0 +1,127 @@
+%% 12pt, a4 paper, with title page
+\documentclass[10pt, a4paper, titlepage,
+% one-sided
+	oneside,
+% flush left equations, left equation numbers
+	fleqn, leqno]{article}
+
+\usepackage[top=2.5cm, bottom=2cm, left=2.5cm, right=1cm]{geometry}
+
+% Spanish titles
+\usepackage[spanish]{babel}
+
+%\usepackage{graphicx}
+%\usepackage{amsmath}
+%\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{rotating}
+
+% dot
+%\usepackage{dot2texi}
+%\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows}
+
+% Font, encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}                % Otros: palatino, bookman, times
+
+% Interactive index
+\usepackage{hyperref}
+
+% Attachments
+\usepackage{attachfile}
+
+
+% Make lists without bullets
+%\renewenvironment{itemize}{
+% \begin{list}{}{
+%  \setlength{\leftmargin}{1.5em}
+% }
+%}{
+% \end{list}
+%}
+
+% Open sections on right pages
+\let\oldsection\section
+\def\section{\cleardoublepage\oldsection}
+
+% Code listings
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,columns=flexible}
+
+% Watermark
+\usepackage{draftwatermark}
+\SetWatermarkText{BORRADOR}
+
+% Document properties
+\title{71.14 - Modelos y Optimización I - TP1}
+\author{
+	Federico Churca-Torrusio\\
+	Cynthia Gamarra}
+\date{2015 - Primer Cuatrimestre\\
+	Última modificación: \today}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = red,
+  pdflang = es,
+  pdfauthor = {Federico Churca-Torrusio, Cynthia Gamarra},
+  pdfproducer = {Federico Churca-Torrusio},
+  pdfcreator = pdflatex,
+  pdftitle = {71.14 - Modelos y Optimización I - TP1},
+  pdfsubject = {},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\cleardoublepage
+%\pagenumbering{roman}
+%\setcounter{page}{1}
+%\tableofcontents
+%\cleardoublepage
+%\listoffigures
+%\listoftables
+%\cleardoublepage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Parte A}
+\section{Parte B}
+\subsection{Objetivo}
+Determinar un plan de expansión de la red ferroviaria para maximizar los beneficios en el transcurso de un año.
+
+\subsection{Hipótesis}
+\begin{itemize}
+ \item Las opciones de inversión en trenes y en vías no son absolutamente excluyentes, sino que comparten un presupuesto a distribuir.
+ \item El plan es a un año.
+ \item La instalación de trenes y vías se completa antes del principio del año a analizar.
+ \item Los réditos obtenidos se computan al final del año a analizar.
+ \item Se dispone del dinero para la elaboración del plan.
+ \item No hay inflación, o en caso de existir, la relación entre los precios de costos se mantienen constantes en el período analizado.
+ \item Los costos de mano de obra están incluidos en los gastos de cualquiera de los dos planes a realizar.
+ \item Las vías no cubiertas no generan costos.
+\end{itemize}
+
+\subsection{Modelo}
+\subsubsection{Variables}
+
+\begin{tabular}{|l|r|r|r|} \hline
+    & Trenes [u] & Vías [km] & Dinero [USD]\\ \hline
+  Cantidad inicial & 1000 & 48K & 50M\\ \hline
+  Compra mínima & 40 & 0 & 0\\ \hline
+  Costo inicial (USD/u) & 20M & 50K & 0\\ \hline
+  Rédito anual (USD/yu) & 2M & 10K* & 0\\ \hline
+\end{tabular}
+
+\subsubsection{Planteo Matemático}
+Se desea maximizar el siguiente funcional:
+
+$$MAX          20000000 T + 10000 V$$
+
+\textattachfile{tp1b.lp}{tp1b.lp}
+\lstinputlisting{tp1b.lp}
+
+\end{document}
