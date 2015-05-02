@@ -5,9 +5,9 @@ Yc > 0
 Yd > 0
 Yi > 0
 Yvh > 0
-Yvh > 0
-Yvh > 0
-Yvh > 0
+Yvj > 0
+Yve > 0
+Yvs > 0
 end
 ! Apoyo de los distintos sectores
 int Xh ! Corriente histórica
