@@ -1,13 +1,13 @@
 max Xh + Xj + Xe + Xs
 
 subject to
-Yc > 0
-Yd > 0
-Yi > 0
-Yvh > 0
-Yvj > 0
-Yve > 0
-Yvs > 0
+! Vicepresidencia mutuamente excluyente
+Yvh + Yvj + Yve + Yvs < 1
+! Sectores
+ 99 Yvh + 3 Xh -   Yc -   Yd > 0 ! Corriente histórica
+-99 Yvj + 1 Xj -   Yd -   Yd < 0 ! Juventud
+ 99 Yve + 1 Xe +   Yc +   Yi > 2 ! Empresarios
+ 99 Yvs + 1 Xs - 2 Yc - 2 Yi > 0 ! Sindicato
 end
 ! Apoyo de los distintos sectores
 int Xh ! Corriente histórica
