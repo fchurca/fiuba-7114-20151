@@ -124,10 +124,82 @@ Determinar la estrategia para conseguir el mayor apoyo de los sectores para gana
 
 \end{table}
 
-\subsubsection{Planteo Matemático}
-%\textattachfile{tp1a.lp}{tp1a.lp}
-%\lstinputlisting{tp1a.lp}
+\subsubsection{Planteo Matemático en LINGO}
+\begin{lstlisting}
+max Xh + Xj + Xe + Xs
+
+subject to
+!Vicepresidencia mutuamente excluyente
+Yvh + Yvj + Yve + Yvs < 1
+!Sectores
+99 Yvh + 3 Xh - Yc - Yd - Yi > 0
+-99 Yvj + 1 Xj -   Yc -   Yd < 0 
+99 Yve + 1 Xe +   Yc +   Yi > 2  
+99 Yvs + 1 Xs - 2 Yc - 2 Yi > 0  
+end
+! Apoyo de los distintos sectores
+int Xh 
+int Xj 
+int Xe 
+int Xs
+
+! Asuntos
+int Yc  
+int Yd  
+int Yi  
+int Yvh 
+int Yvj 
+int Yve 
+int Yvs 
+\end{lstlisting}
 \subsection{Análisis de resultados}
+En el informe detallada debajo, se puede observar
+\subsubsection{Informe de las soluciones de las variables}
+\begin{lstlisting}
+Global optimal solution found.
+  Objective value:                              4.000000
+  Objective bound:                              4.000000
+  Infeasibilities:                              0.000000
+  Extended solver steps:                               0
+  Total solver iterations:                             0
+  Elapsed runtime seconds:                          3.94
+
+  Model Class:                                      PILP
+
+  Total variables:                     11
+  Nonlinear variables:                  0
+  Integer variables:                   11
+
+  Total constraints:                    6
+  Nonlinear constraints:                0
+
+  Total nonzeros:                      25
+  Nonlinear nonzeros:                   0
+
+
+
+                                Variable           Value        Reduced Cost
+                                      XH        1.000000           -1.000000
+                                      XJ        1.000000           -1.000000
+                                      XE        1.000000           -1.000000
+                                      XS        1.000000           -1.000000
+                                     YVH        0.000000            0.000000
+                                     YVJ        0.000000            0.000000
+                                     YVE        1.000000            0.000000
+                                     YVS        0.000000            0.000000
+                                      YC        0.000000            0.000000
+                                      YD        1.000000            0.000000
+                                      YI        0.000000            0.000000
+
+                                     Row    Slack or Surplus      Dual Price
+                                       1        4.000000            1.000000
+                                       2        0.000000            0.000000
+                                       3        2.000000            0.000000
+                                       4        0.000000            0.000000
+                                       5        98.00000            0.000000
+                                       6        1.000000            0.000000
+
+\end{lstlisting}
 
 \section{Parte B}
 \subsection{Análisis del problema}
@@ -159,14 +231,53 @@ Determinar un plan de expansión de la red ferroviaria para maximizar los benefi
   Rédito anual (USD/yu) & 2M & 10K* & 0\\ \hline
 \end{tabular}
 
-\subsubsection{Planteo Matemático}
-Se desea maximizar el siguiente funcional:
-
-$$MAX   20000000 T + 10000 V$$
-
+\subsubsection{Planteo Matemático en LINGO}
 \textattachfile{tp1b.lp}{tp1b.lp}
 \lstinputlisting{tp1b.lp}
 
 \subsection{Análisis de resultados}
+En el informe detallada debajo, se puede observar que el óptimo se da cuando se compra 40 trenes......
+\subsubsection{Informe de las soluciones de las variables}
+\begin{lstlisting}
+Global optimal solution found.
+  Objective value:                              2600.000
+  Objective bound:                              2600.000
+  Infeasibilities:                              0.000000
+  Extended solver steps:                               0
+  Total solver iterations:                             0
+  Elapsed runtime seconds:                          0.12
 
+  Model Class:                                      MILP
+
+  Total variables:                      6
+  Nonlinear variables:                  0
+  Integer variables:                    2
+
+  Total constraints:                    8
+  Nonlinear constraints:                0
+
+  Total nonzeros:                      15
+  Nonlinear nonzeros:                   0
+
+
+
+                                Variable           Value        Reduced Cost
+                                INGRESOS        2600.000            0.000000
+                                  TRENES        1040.000           -2.500000
+                           VIASCUBIERTAS        52.00000            0.000000
+                         TRENESCOMPRADOS        40.00000            0.000000
+                                    VIAS        52.00000            0.000000
+                           VIASCOMPRADAS        4.000000            0.000000
+
+                                     Row    Slack or Surplus      Dual Price
+                                       1        2600.000            1.000000
+                             DEFINGRESOS        0.000000            1.000000
+                               DEFTRENES        0.000000            0.000000
+                                 DEFVIAS        0.000000            0.000000
+                            CNSTRENESMIN        0.000000            0.000000
+                          CNSPRESUPUESTO        0.000000            0.000000
+                           CNSCOBERTURA1        0.000000           -10.00000
+                           CNSCOBERTURA2        0.000000            0.000000
+
+\end{lstlisting}
 \end{document}
