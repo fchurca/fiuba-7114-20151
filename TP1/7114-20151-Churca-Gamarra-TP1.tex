@@ -46,8 +46,11 @@
 \let\oldsection\section
 \def\section{\cleardoublepage\oldsection}
 
+\newcommand{\attachlisting}[1]{\textattachfile{#1}{#1}\lstinputlisting{#1}}
+
 % Code listings
 \usepackage{listings}
+% Use a monospace font, don't pad with spaces
 \lstset{basicstyle=\ttfamily,columns=flexible}
 
 % Watermark
@@ -125,56 +128,12 @@ Determinar la estrategia para conseguir el mayor apoyo de los sectores para gana
 \end{table}
 
 \subsubsection{Planteo Matemático en LINGO}
-\lstinputlisting{tp1a.lp}
+\attachlisting{tp1a.lp}
 
 \subsection{Análisis de resultados}
 En el informe detallada debajo, se puede observar
 \subsubsection{Informe de las soluciones de las variables}
-\begin{lstlisting}
-Global optimal solution found.
-  Objective value:                              4.000000
-  Objective bound:                              4.000000
-  Infeasibilities:                              0.000000
-  Extended solver steps:                               0
-  Total solver iterations:                             0
-  Elapsed runtime seconds:                          3.94
-
-  Model Class:                                      PILP
-
-  Total variables:                     11
-  Nonlinear variables:                  0
-  Integer variables:                   11
-
-  Total constraints:                    6
-  Nonlinear constraints:                0
-
-  Total nonzeros:                      25
-  Nonlinear nonzeros:                   0
-
-
-
-                                Variable           Value        Reduced Cost
-                                      XH        1.000000           -1.000000
-                                      XJ        1.000000           -1.000000
-                                      XE        1.000000           -1.000000
-                                      XS        1.000000           -1.000000
-                                     YVH        0.000000            0.000000
-                                     YVJ        0.000000            0.000000
-                                     YVE        1.000000            0.000000
-                                     YVS        0.000000            0.000000
-                                      YC        0.000000            0.000000
-                                      YD        1.000000            0.000000
-                                      YI        0.000000            0.000000
-
-                                     Row    Slack or Surplus      Dual Price
-                                       1        4.000000            1.000000
-                                       2        0.000000            0.000000
-                                       3        2.000000            0.000000
-                                       4        0.000000            0.000000
-                                       5        98.00000            0.000000
-                                       6        1.000000            0.000000
-
-\end{lstlisting}
+\attachlisting{tp1a.out}
 
 \section{Parte B}
 \subsection{Análisis del problema}
@@ -207,52 +166,11 @@ Determinar un plan de expansión de la red ferroviaria para maximizar los benefi
 \end{tabular}
 
 \subsubsection{Planteo Matemático en LINGO}
-\textattachfile{tp1b.lp}{tp1b.lp}
-\lstinputlisting{tp1b.lp}
+\attachlisting{tp1b.lp}
 
 \subsection{Análisis de resultados}
 En el informe detallada debajo, se puede observar que el óptimo se da cuando se compra 40 trenes......
 \subsubsection{Informe de las soluciones de las variables}
-\begin{lstlisting}
-Global optimal solution found.
-  Objective value:                              2600.000
-  Objective bound:                              2600.000
-  Infeasibilities:                              0.000000
-  Extended solver steps:                               0
-  Total solver iterations:                             0
-  Elapsed runtime seconds:                          0.12
+\attachlisting{tp1b.out}
 
-  Model Class:                                      MILP
-
-  Total variables:                      6
-  Nonlinear variables:                  0
-  Integer variables:                    2
-
-  Total constraints:                    8
-  Nonlinear constraints:                0
-
-  Total nonzeros:                      15
-  Nonlinear nonzeros:                   0
-
-
-
-                                Variable           Value        Reduced Cost
-                                INGRESOS        2600.000            0.000000
-                                  TRENES        1040.000           -2.500000
-                           VIASCUBIERTAS        52.00000            0.000000
-                         TRENESCOMPRADOS        40.00000            0.000000
-                                    VIAS        52.00000            0.000000
-                           VIASCOMPRADAS        4.000000            0.000000
-
-                                     Row    Slack or Surplus      Dual Price
-                                       1        2600.000            1.000000
-                             DEFINGRESOS        0.000000            1.000000
-                               DEFTRENES        0.000000            0.000000
-                                 DEFVIAS        0.000000            0.000000
-                            CNSTRENESMIN        0.000000            0.000000
-                          CNSPRESUPUESTO        0.000000            0.000000
-                           CNSCOBERTURA1        0.000000           -10.00000
-                           CNSCOBERTURA2        0.000000            0.000000
-
-\end{lstlisting}
 \end{document}
