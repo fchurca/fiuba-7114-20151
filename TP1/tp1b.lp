@@ -8,5 +8,3 @@ CnsPresupuesto) 20 TrenesComprados + 50 ViasCompradas <= 1000
 CnsCobertura1)  0.050 Trenes - ViasCubiertas >= 0
 CnsCobertura2)  Vias - ViasCubiertas >= 0
 end
-gin Trenes
-gin TrenesComprados
