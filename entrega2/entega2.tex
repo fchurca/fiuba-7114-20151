@@ -1,0 +1,124 @@
+%% 12pt, a4 paper, with title page
+\documentclass[10pt, a4paper, titlepage,
+% one-sided
+	oneside,
+% flush left equations, left equation numbers
+	fleqn, leqno]{article}
+
+\usepackage[top=2.5cm, bottom=2cm, left=2.5cm, right=1cm]{geometry}
+
+% Spanish titles
+\usepackage[spanish]{babel}
+
+%\usepackage{graphicx}
+%\usepackage{amsmath}
+%\usepackage{gensymb}
+\usepackage{multirow}
+\usepackage{rotating}
+
+% dot
+%\usepackage{dot2texi}
+%\usepackage{tikz}
+%\usetikzlibrary{shapes,arrows}
+
+% Font, encoding
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{times}                % Otros: palatino, bookman, times
+\usepackage{enumerate}
+% Interactive index
+\usepackage{hyperref}
+
+% Attachments
+\usepackage{attachfile}
+
+
+% Make lists without bullets
+%\renewenvironment{itemize}{
+% \begin{list}{}{
+%  \setlength{\leftmargin}{1.5em}
+% }
+%}{
+% \end{list}
+%}
+
+% Open sections on right pages
+\let\oldsection\section
+\def\section{\cleardoublepage\oldsection}
+
+\newcommand{\attachlisting}[1]{\textattachfile{#1}{#1}\lstinputlisting{#1}}
+
+% Code listings
+\usepackage{listings}
+% Use a monospace font, don't pad with spaces
+\lstset{basicstyle=\ttfamily,columns=flexible}
+
+% Watermark
+%\usepackage{draftwatermark}
+%\SetWatermarkText{BORRADOR}
+
+% Document properties
+\title{71.14 - Modelos y Optimización I - TP1 - Segunda Entrega}
+\author{
+	Federico Churca-Torrusio \\\texttt{fchurca@fi.uba.ar}
+	\and
+	Cynthia Gamarra \\\texttt{cyntgamarra@gmail.com}}
+\date{2015 - Primer Cuatrimestre}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = red,
+  pdflang = es,
+  pdfauthor = {Federico Churca-Torrusio, Cynthia Gamarra},
+  pdfproducer = {Federico Churca-Torrusio},
+  pdfcreator = pdflatex,
+  pdftitle = {71.14 - Modelos y Optimización I - TP1 - SEGUNDA ENTREGA},
+  pdfsubject = {},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+\maketitle
+%\thispagestyle{empty}
+%\cleardoublepage
+%\pagenumbering{roman}
+%\setcounter{page}{1}
+%\tableofcontents
+%\cleardoublepage
+%\listoffigures
+%\listoftables
+
+\cleardoublepage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{Parte A}
+\begin{enumerate} [a .]
+\item \textbf{Plantear una heurística para resolver el problema. Tener en cuenta que la heurística debe ser genérica, es decir, debe servir no sólo para este problema sino para otros problemas similares.}\\
+\begin{center}
+\textbf{Seudocódigo de la heurística propuesta}
+\end{center}
+\begin{enumerate}
+\item Se crea una lista de los sectores involucrados.
+\item Para cada sector se le asigna una lista de condiciones a cumplir. Para cada condición se asigna 1 si el sector apoya a determinado conflicto, sino 0 (cero).
+\item Se ordena de menor a mayor la lista de sectores involucrados que apoyen a la menor cantidad de conflictos.En caso de empate se dá mayor prioridad al sector que quiere al menos una victoria.
+\item Mientras haya sectores:
+ - Agregar al sector a la lista de SectoresApoyo como posible sector de apoyo al partido.En caso de empate agregar al sector que no pida vacantes en la lista.
+ - Si se ofrece la vicepresidencia se agrega automáticamente al sector a la lista SectoresApoyo.
+ Fin mientras
+ Si la longitud de la lista de SectoresApoyo coincide con la cantidad de sectores totales, se podrá ganar la interna.
+ Fin
+\end{enumerate}
+
+\item \textbf{Realizar un programa que ejecute la heurística planteada y analizar los resultados.}
+
+
+\section{Parte B}
+A partir del resultado de la corrida del TP y del análisis de sensibilidad, responder las siguientes preguntas. Si consideran que les falta información, indicar qué información les falta y porqué. NO SE DEBE REALIZAR UNA NUEVA CORRIDA DEL TP ( ni por LINDO, ni por simplex). Tener en cuenta que lo que se espera de esta entrega es que sepan sacar el máximo provecho de la información disponible. Cada una de la preguntas es independiente de las demás.
+\item \textbf{Se ha recalcalculado el beneficio de cada tren en funcionamiento, y se descubrió que cada tren produce un beneficio anual de \$ 4 millones. ¿Cómo cambia la solución obtenida con esta información?}\\
+SE MODIFICA UN COEFICIENTE $C_i$
+\item \textbf{Para mejorar la imagen del partido, se quiere elevar el mínimo de trenes a inaugurar a 50. ¿Cómo afecta esto a la solución obtenida?}\\
+SE MODIFICA UN COEFICIENTE $B_i$
+\item \textbf{Se presenta la posibilidad de incorporar nuevos trenes de alta velocidad. Cada uno cuesta 30 millones, cubre 100 kilómetros de vías y puede incluirse dentro de la cantidad mínima de 40 trenes. Cada tren de alta velocidad generará un beneficio de 3,8 millones anuales. ¿Será conveniente incorporar trenes de este tipo?}\\
+HACER LUCRO CESANTE
+\end{enumerate}
+\end{document}
