@@ -10,6 +10,7 @@
 % Spanish titles
 \usepackage[spanish]{babel}
 
+\usepackage{pdfpages}
 %\usepackage{graphicx}
 \usepackage{amsmath}
 %\usepackage{gensymb}
@@ -119,12 +120,13 @@
 A partir del resultado de la corrida del TP y del análisis de sensibilidad, responder las siguientes preguntas. Si consideran que les falta información, indicar qué información les falta y porqué. NO SE DEBE REALIZAR UNA NUEVA CORRIDA DEL TP ( ni por LINDO, ni por simplex). Tener en cuenta que lo que se espera de esta entrega es que sepan sacar el máximo provecho de la información disponible. Cada una de la preguntas es independiente de las demás.
 \begin{enumerate} [a .]
 \item \textbf{Se ha recalcalculado el beneficio de cada tren en funcionamiento, y se descubrió que cada tren produce un beneficio anual de \$ 4 millones. ¿Cómo cambia la solución obtenida con esta información?}\\
-Para ver esto, se analiza la sección de variación de coeficientes de objetivo.
+	Para ver esto, se analiza la sección de variación de coeficientes de objetivo.
 Si vemos la fila \texttt{TRENES}, notamos que se permite desde un aumento de USD2M/U a un decremento de USD2.5M/U sobre el coeficiente de ganancia actual de USD2M/U\footnote{
 	También podemos ver que el coeficiente de ganancia aparece como 0 por definir el funcional en una forma no canónica, maximizando una sola variable \texttt{INGRESOS}.
 	Si cambiamos la definición del máximo por \texttt{max 2 Trenes + 10 ViasCubiertas} y quitamos la definición de \texttt{INGRESOS} obtenemos un modelo matemáticamente equivalente, y con la salida esperada de un coeficiente de ganancia de USD2M/U para \texttt{TRENES} y USD10M/MM para \texttt{VIASCUBIERTAS}.}.
 Como el incremento está en la frontera del rango de validez de la solución actual, puede realizarse sin cambiar las cantidades de trenes a comprar y vías a instalar.
-La ganancia nueva puede calcularse incrementando la actual con el producto del incremento del factor de ganancia para \texttt{TRENES} y la cantidad de \texttt{TRENES}:
+
+	La ganancia nueva puede calcularse incrementando la actual con el producto del incremento del factor de ganancia para \texttt{TRENES} y la cantidad de \texttt{TRENES}:
 \begin{align*}
 	INGRESOS_f &= INGRESOS_i + \Delta C_{TRENES} * TRENES\\
 		&= USD2600M + USD2M/U * 1040U\\
@@ -133,8 +135,13 @@ La ganancia nueva puede calcularse incrementando la actual con el producto del i
 \end{align*}
 
 \item \textbf{Para mejorar la imagen del partido, se quiere elevar el mínimo de trenes a inaugurar a 50. ¿Cómo afecta esto a la solución obtenida?}\\
-SE MODIFICA UN COEFICIENTE $B_i$
+	Analizamos esta vez la sección de variación de coeficientes de lado derecho.
+En este caso, vemos que para la solución actual la cantidad de trenes mínima, aunque se puede reducir arbitrariamente, no se puede incrementar sin un cambio de solución.
+
 \item \textbf{Se presenta la posibilidad de incorporar nuevos trenes de alta velocidad. Cada uno cuesta 30 millones, cubre 100 kilómetros de vías y puede incluirse dentro de la cantidad mínima de 40 trenes. Cada tren de alta velocidad generará un beneficio de 3,8 millones anuales. ¿Será conveniente incorporar trenes de este tipo?}\\
 HACER LUCRO CESANTE
 \end{enumerate}
+
+\appendix
+\includepdf[pages=-]{../TP1/7114-20151-Churca-Gamarra-TP1.pdf}
 \end{document}
