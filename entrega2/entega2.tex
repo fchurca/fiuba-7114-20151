@@ -123,25 +123,53 @@ A partir del resultado de la corrida del TP y del análisis de sensibilidad, res
 	Para ver esto, se analiza la sección de variación de coeficientes de objetivo.
 Si vemos la fila \texttt{TRENES}, notamos que se permite desde un aumento de USD2M/U a un decremento de USD2.5M/U sobre el coeficiente de ganancia actual de USD2M/U\footnote{
 	También podemos ver que el coeficiente de ganancia aparece como 0 por definir el funcional en una forma no canónica, maximizando una sola variable \texttt{INGRESOS}.
-	Si cambiamos la definición del máximo por \texttt{max 2 Trenes + 10 ViasCubiertas} y quitamos la definición de \texttt{INGRESOS} obtenemos un modelo matemáticamente equivalente, y con la salida esperada de un coeficiente de ganancia de USD2M/U para \texttt{TRENES} y USD10M/MM para \texttt{VIASCUBIERTAS}.}.
+	Si cambiamos la definición del máximo por \texttt{max 2 Trenes + 10 ViasCubiertas} y quitamos la definición de \texttt{INGRESOS} obtenemos un modelo matemáticamente equivalente, y con la salida esperada de un coeficiente de ganancia de USD2M/U para \texttt{TRENES} y USD10M/Mm para \texttt{VIASCUBIERTAS}.}.
 Como el incremento está en la frontera del rango de validez de la solución actual, puede realizarse sin cambiar las cantidades de trenes a comprar y vías a instalar.
 
 	La ganancia nueva puede calcularse incrementando la actual con el producto del incremento del factor de ganancia para \texttt{TRENES} y la cantidad de \texttt{TRENES}:
 \begin{align*}
-	INGRESOS_f &= INGRESOS_i + \Delta C_{TRENES} * TRENES\\
+	INGRESOS_a &= INGRESOS_i + \Delta C_{TRENES} * TRENES\\
 		&= USD2600M + USD2M/U * 1040U\\
 		&= USD2600M + USD2080M\\
-	INGRESOS_f &= USD4680M
+	INGRESOS_a &= USD4680M
 \end{align*}
 
 \item \textbf{Para mejorar la imagen del partido, se quiere elevar el mínimo de trenes a inaugurar a 50. ¿Cómo afecta esto a la solución obtenida?}\\
 	Analizamos esta vez la sección de variación de coeficientes de lado derecho.
 En este caso, vemos que para la solución actual la cantidad de trenes mínima, aunque se puede reducir arbitrariamente, no se puede incrementar sin un cambio de solución.
+Hay que calcular entonces cuánto del presupuesto erogado hay que redirigir de la compra de vías a la compra de trenes, calcular la cobertura nueva de vías, y calcular nuevamente los ingresos.
+Como se está aumentando un mínimo, forzándonos a comprar un recurso que ya estaba en el mínimo original, lo más esperable es que la nueva ganancia sea peor.
+
+	Empecemos por el presupuesto:
+\begin{align*}
+	PRESUPUESTO_{TRENES}	&= USD20M/U * 50U\\
+	PRESUPUESTO_{TRENES}	&= USD1000M\\
+	PRESUPUESTO_{VIAS}	&= PRESUPUESTO - PRESUPUESTO_{TRENES}\\
+		&= USD1000M - USD1000M\\
+	PRESUPUESTO_{VIAS}	&=0\\
+\end{align*}
+Vemos que sólamente hay presupuesto para la compra de trenes, y no se compran nuevas vías.
+
+	Ahora analizamos la cobertura:
+\begin{align*}
+	VIASCUBIERTAS_b	&= min(48Mm, 1050U * 0.05Mm/U)\\
+		&= min(48Mm, 52.5Mm)\\
+	VIASCUBIERTAS_b	&= 48Mm
+\end{align*}
+Vemos que se cubre completamente la infraestructura vial actual.
+
+	Ahora analicemos los ingresos:
+\begin{align*}
+	INGRESOS_b	&= USD2M/U * 1050U + USD10M/Mm * 48Mm\\
+		&= USD2100M + USD480M\\
+	INGRESOS_b	&= USD2580M
+\end{align*}
+Vemos que la solución de 2580 millones de USD es, efectivamente, peor que la original de 2600 millones de USD.
 
 \item \textbf{Se presenta la posibilidad de incorporar nuevos trenes de alta velocidad. Cada uno cuesta 30 millones, cubre 100 kilómetros de vías y puede incluirse dentro de la cantidad mínima de 40 trenes. Cada tren de alta velocidad generará un beneficio de 3,8 millones anuales. ¿Será conveniente incorporar trenes de este tipo?}\\
 HACER LUCRO CESANTE
 \end{enumerate}
 
 \appendix
-\includepdf[pages=-]{../TP1/7114-20151-Churca-Gamarra-TP1.pdf}
+\includepdf[pages=-,scale=.8,pagecommand={}]{../TP1/7114-20151-Churca-Gamarra-TP1.pdf}
 \end{document}
