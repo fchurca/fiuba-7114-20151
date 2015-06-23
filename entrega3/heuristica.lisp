@@ -1,5 +1,5 @@
 ; Esto nos va a ayudar a definir el problema
-(defmacro defpartido (&body body)
+(defmacro make-partido (&body body)
   (let*
     ((solucion (gensym))
      (asuntos ())
@@ -80,7 +80,7 @@
 
 ; Definimos lista de sectores
 (defparameter sectores
-  (defpartido
+  (make-partido
     corriente-historica
     (not (and huelga-empresarios
               diputados-juventud
