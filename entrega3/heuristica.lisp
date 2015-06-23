@@ -98,7 +98,8 @@
 ; Corremos resolvedor e imprimimos todos los mejores candidatos
 (multiple-value-bind
   (soluciones aptitud) (hillclimb sectores (build-seed sectores))
-  (format t "Cantidad de soluciones: ~a~%" (length soluciones))
+  (format t "Cantidad de soluciones encontradas: ~a~%" (length soluciones))
+  (format t "Aptitud de las soluciones: ~a~%" aptitud)
   (dolist (solucion soluciones)
     (multiple-value-bind
       (satisfecho satisfechos insatisfechos)
