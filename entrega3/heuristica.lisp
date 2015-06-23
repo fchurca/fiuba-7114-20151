@@ -16,10 +16,11 @@
              `(',id ,(sector evaluador)))))))
 
 (defun sector-satisfecho (sectores sector solucion)
-  (funcall (getf sectores sector) solucion))
+  (or (eq sector (first solucion))
+      (funcall (getf sectores sector) (second solucion))))
 
 (defun partido-satisfecho (sectores solucion)
-  (loop for (sector evaluador) on sectores by #'cddr
+  (loop for (sector) on sectores by #'cddr
         if (sector-satisfecho sectores sector solucion)
         collect sector into satisfechos
         else
@@ -32,15 +33,17 @@
      (length (nth 2 (multiple-value-list
                       (partido-satisfecho sectores solucion))))))
 
-(defun build-seed (asuntos &optional (generator (constantly nil)))
-  (loop for asunto in asuntos appending
-        `(,asunto ,(funcall generator))))
+(defun build-seed (partido asuntos &optional (generator (constantly nil)))
+  `(,(first partido)
+     ,(loop for asunto in asuntos appending
+            `(,asunto ,(funcall generator)))))
 
 (defun neighbours (solution)
-  (loop for (asunto valor) on solution by #'cddr collecting
-        (let ((neighbour (copy-list solution)))
-          (setf (getf neighbour asunto) (not valor))
-          neighbour)))
+  (loop for (sector) on sectores by #'cddr appending
+        (loop for (asunto valor) on (second solution) by #'cddr collecting
+              (let ((neighbour (copy-list (second solution))))
+                (setf (getf neighbour asunto) (not valor))
+                `(,sector ,neighbour)))))
 
 (defun hillclimb (problem seed)
   (let
@@ -92,11 +95,11 @@
 
 ; Corremos resolvedor e imprimimos todos los mejores candidatos
 (multiple-value-bind
-         (soluciones aptitud) (hillclimb sectores (build-seed asuntos))
-         (dolist (solucion soluciones)
-           (multiple-value-bind
-             (satisfecho satisfechos insatisfechos)
-             (partido-satisfecho sectores solucion)
-             (format t "Solución: ~a~%Satisfechos: ~a~%Insatisfechos: ~a~%"
-                   solucion satisfechos insatisfechos))))
+  (soluciones aptitud) (hillclimb sectores (build-seed sectores asuntos))
+  (dolist (solucion soluciones)
+    (multiple-value-bind
+      (satisfecho satisfechos insatisfechos)
+      (partido-satisfecho sectores solucion)
+      (format t "Solución: ~a~%Satisfechos: ~a~%Insatisfechos: ~a~%"
+              solucion satisfechos insatisfechos))))
 
