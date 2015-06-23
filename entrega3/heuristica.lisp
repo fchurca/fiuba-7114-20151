@@ -19,26 +19,27 @@
   (or (eq sector (first solucion))
       (funcall (getf sectores sector) (second solucion))))
 
-(defun partido-satisfecho (sectores solucion)
-  (loop for (sector) on sectores by #'cddr
+(defun partido-satisfecho (partido solucion)
+  (let ((sectores (second partido)))
+    (loop for (sector) on sectores by #'cddr
         if (sector-satisfecho sectores sector solucion)
         collect sector into satisfechos
         else
         collect sector into insatisfechos
         finally
-        (return (values (null insatisfechos) satisfechos insatisfechos))))
+        (return (values (null insatisfechos) satisfechos insatisfechos)))))
 
 (defun fitness (sectores solucion)
   (length (second (multiple-value-list
                    (partido-satisfecho sectores solucion)))))
 
-(defun build-seed (partido asuntos &optional (generator (constantly nil)))
-  `(,(first partido)
-     ,(loop for asunto in asuntos appending
+(defun build-seed (partido &optional (generator (constantly nil)))
+  `(,(first (second partido))
+     ,(loop for asunto in (first partido) appending
             `(,asunto ,(funcall generator)))))
 
-(defun neighbours (solution)
-  (loop for (sector) on sectores by #'cddr appending
+(defun neighbours (problem solution)
+  (loop for (sector) on (second problem) by #'cddr appending
         (loop for (asunto valor) on (second solution) by #'cddr collecting
               (let ((neighbour (copy-list (second solution))))
                 (setf (getf neighbour asunto) (not valor))
@@ -63,38 +64,35 @@
           ((= fitness max-fitness)
            (format t " Candidate is fit! Added to pool~%")
            (setf candidates (append (list current) candidates)
-                 to-visit (append (neighbours current) to-visit)))
+                 to-visit (append (neighbours problem current) to-visit)))
           ((> fitness max-fitness)
            (format t " Candidate is better! Replacing pool~%")
            (setf candidates (list current)
-                 to-visit (neighbours current)
+                 to-visit (neighbours problem current)
                  max-fitness fitness)))))
     finally (return (values candidates max-fitness))))
 
-; Definimos lista de asuntos
-(defparameter asuntos
-  '(huelga-empresarios diputados-juventud importaciones-abrir))
-
 ; Definimos lista de sectores
 (defparameter sectores
-  (defsectores
-    corriente-historica
-    (not (and huelga-empresarios
-              diputados-juventud
-              importaciones-abrir))
-    juventud
-    (and huelga-empresarios
-         diputados-juventud)
-    sindicatos
-    (not (or huelga-empresarios
-             importaciones-abrir))
-    empresarios
-    (or huelga-empresarios
-        importaciones-abrir)))
+  (list '(huelga-empresarios diputados-juventud importaciones-abrir)
+        (defsectores
+          corriente-historica
+          (not (and huelga-empresarios
+                    diputados-juventud
+                    importaciones-abrir))
+          juventud
+          (and huelga-empresarios
+               diputados-juventud)
+          sindicatos
+          (not (or huelga-empresarios
+                   importaciones-abrir))
+          empresarios
+          (or huelga-empresarios
+              importaciones-abrir))))
 
 ; Corremos resolvedor e imprimimos todos los mejores candidatos
 (multiple-value-bind
-  (soluciones aptitud) (hillclimb sectores (build-seed sectores asuntos))
+  (soluciones aptitud) (hillclimb sectores (build-seed sectores))
   (format t "Cantidad de soluciones: ~a~%" (length soluciones))
   (dolist (solucion soluciones)
     (multiple-value-bind
