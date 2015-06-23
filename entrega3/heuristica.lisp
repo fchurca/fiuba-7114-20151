@@ -96,10 +96,13 @@
 ; Corremos resolvedor e imprimimos todos los mejores candidatos
 (multiple-value-bind
   (soluciones aptitud) (hillclimb sectores (build-seed sectores asuntos))
+  (format t "Cantidad de soluciones: ~a~%" (length soluciones))
   (dolist (solucion soluciones)
     (multiple-value-bind
       (satisfecho satisfechos insatisfechos)
       (partido-satisfecho sectores solucion)
-      (format t "Solución: ~a~%Satisfechos: ~a~%Insatisfechos: ~a~%"
-              solucion satisfechos insatisfechos))))
+      (format t " Vicepresidencia: ~a~% Decisiones:~a~%"
+              (first solucion) (second solucion))
+      (format t "  Satisfechos: ~a~%  Insatisfechos: ~a~%"
+              satisfechos insatisfechos))))
 
