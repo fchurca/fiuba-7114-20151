@@ -57,18 +57,20 @@
         (unless (gethash current visited)
           (setf (gethash current visited) t)
           (let ((fitness (fitness problem current)))
-            (format t "Max:~a~%Candidate: ~a~%Fitness:~a~%"
-                    max-fitness current fitness)
-            (unless (< fitness max-fitness)
-              (when (= fitness max-fitness)
-                (format t "Candidate is fit! Added to pool~%")
-                (setf candidates (append (list current) candidates)
-                      to-visit (append (neighbours current) to-visit)))
-              (when (> fitness max-fitness)
-                (format t "Candidate is better! Replacing pool~%")
-                (setf candidates (list current)
-                      to-visit (neighbours current)
-                      max-fitness fitness)))))))
+            (format t "Candidate: ~a~% Fitness:~a~%"
+                    current fitness)
+            (cond
+              ((< fitness max-fitness)
+               (format t " Candidate is worse. Skipped.~%"))
+              ((= fitness max-fitness)
+               (format t " Candidate is fit! Added to pool~%")
+               (setf candidates (append (list current) candidates)
+                     to-visit (append (neighbours current) to-visit)))
+              ((> fitness max-fitness)
+               (format t " Candidate is better! Replacing pool~%")
+               (setf candidates (list current)
+                     to-visit (neighbours current)
+                     max-fitness fitness)))))))
     (values candidates max-fitness)))
 
 ; Definimos lista de asuntos
