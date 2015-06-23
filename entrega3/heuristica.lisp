@@ -1,19 +1,25 @@
-; Esto nos va a ayudar a definir todos los sectores
+; Esto nos va a ayudar a definir el problema
 (defmacro defpartido (&body body)
-  (let
-    ((solucion (gensym)))
-    (labels
-      ((sector (body) `(lambda (,solucion) ,(walk body)))
-       (walk (body)
-         (loop for clause in body collect
-               (if (listp clause)
-                 (walk clause)
-                 (if (member clause '(and not or))
-                   clause
-                   `(getf ,solucion ',clause))))))
-      `(list
-         ,@(loop for (id evaluador) on body by #'cddr append
-             `(',id ,(sector evaluador)))))))
+  (let*
+    ((solucion (gensym))
+     (asuntos ())
+     (sectores
+       (labels
+         ((sector (body) `(lambda (,solucion) ,(walk body)))
+          (walk (body)
+            (loop for clause in body collect
+                  (if (listp clause)
+                    (walk clause)
+                    (if (member clause '(and not or))
+                      clause
+                      (progn
+                        (unless (member clause asuntos)
+                          (setf asuntos (cons clause asuntos)))
+                        `(getf ,solucion ',clause)))))))
+         `(list
+            ,@(loop for (id evaluador) on body by #'cddr append
+                `(',id ,(sector evaluador)))))))
+    `(list ',asuntos ,sectores)))
 
 (defun sector-satisfecho (sectores sector solucion)
   (or (eq sector (first solucion))
@@ -22,16 +28,16 @@
 (defun partido-satisfecho (partido solucion)
   (let ((sectores (second partido)))
     (loop for (sector) on sectores by #'cddr
-        if (sector-satisfecho sectores sector solucion)
-        collect sector into satisfechos
-        else
-        collect sector into insatisfechos
-        finally
-        (return (values (null insatisfechos) satisfechos insatisfechos)))))
+          if (sector-satisfecho sectores sector solucion)
+          collect sector into satisfechos
+          else
+          collect sector into insatisfechos
+          finally
+          (return (values (null insatisfechos) satisfechos insatisfechos)))))
 
 (defun fitness (sectores solucion)
   (length (second (multiple-value-list
-                   (partido-satisfecho sectores solucion)))))
+                    (partido-satisfecho sectores solucion)))))
 
 (defun build-seed (partido &optional (generator (constantly nil)))
   `(,(first (second partido))
@@ -74,21 +80,20 @@
 
 ; Definimos lista de sectores
 (defparameter sectores
-  (list '(huelga-empresarios diputados-juventud importaciones-abrir)
-        (defpartido
-          corriente-historica
-          (not (and huelga-empresarios
-                    diputados-juventud
-                    importaciones-abrir))
-          juventud
-          (and huelga-empresarios
-               diputados-juventud)
-          sindicatos
-          (not (or huelga-empresarios
-                   importaciones-abrir))
-          empresarios
-          (or huelga-empresarios
-              importaciones-abrir))))
+  (defpartido
+    corriente-historica
+    (not (and huelga-empresarios
+              diputados-juventud
+              importaciones-abrir))
+    juventud
+    (and huelga-empresarios
+         diputados-juventud)
+    sindicatos
+    (not (or huelga-empresarios
+             importaciones-abrir))
+    empresarios
+    (or huelga-empresarios
+        importaciones-abrir)))
 
 ; Corremos resolvedor e imprimimos todos los mejores candidatos
 (multiple-value-bind
