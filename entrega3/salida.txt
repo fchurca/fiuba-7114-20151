@@ -84,7 +84,8 @@ Candidate: (SINDICATOS
 Cantidad de soluciones encontradas: 1
 Aptitud de las soluciones: 4
  Vicepresidencia: SINDICATOS
- Decisiones:(IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T)
+ Decisiones: (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T)
+  Satisface a todo el partido: T
   Satisfechos: (CORRIENTE-HISTORICA JUVENTUD SINDICATOS EMPRESARIOS)
   Insatisfechos: NIL
 * 

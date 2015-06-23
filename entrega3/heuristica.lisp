@@ -106,8 +106,9 @@
     (multiple-value-bind
       (satisfecho satisfechos insatisfechos)
       (partido-satisfecho sectores solucion)
-      (format t " Vicepresidencia: ~a~% Decisiones:~a~%"
+      (format t " Vicepresidencia: ~a~% Decisiones: ~a~%"
               (first solucion) (second solucion))
+      (format t "  Satisface a todo el partido: ~a~%" satisfecho)
       (format t "  Satisfechos: ~a~%  Insatisfechos: ~a~%"
               satisfechos insatisfechos))))
 
