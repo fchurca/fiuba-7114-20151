@@ -8,14 +8,12 @@
          ((sector (body) `(lambda (,solucion) ,(walk body)))
           (walk (body)
             (loop for clause in body collect
-                  (if (listp clause)
-                    (walk clause)
-                    (if (member clause '(and not or))
-                      clause
-                      (progn
-                        (unless (member clause asuntos)
-                          (setf asuntos (cons clause asuntos)))
-                        `(getf ,solucion ',clause)))))))
+                  (cond
+                    ((listp clause) (walk clause)) 
+                    ((member clause '(and not or)) clause) 
+                    (t (unless (member clause asuntos)
+                         (setf asuntos (cons clause asuntos)))
+                       `(getf ,solucion ',clause))))))
          `(list
             ,@(loop for (id evaluador) on body by #'cddr append
                 `(',id ,(sector evaluador)))))))
