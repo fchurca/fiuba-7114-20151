@@ -95,24 +95,49 @@
 \section{Parte A}
 \begin{enumerate} [a .]
 \item \textbf{Plantear una heurística para resolver el problema. Tener en cuenta que la heurística debe ser genérica, es decir, debe servir no sólo para este problema sino para otros problemas similares.}\\
+	La heurística que decidimos usar fue una versión de Hill Climbing, implementada en Common Lisp sin el uso de librerías especializadas.
+Se implementó una variante que busca una meseta máxima local sin delocalización.
+Se procuró separar fuertemente la implementación en tres secciones: el algoritmo de Hill Climbing en sí, la evaluación del problema y generación de soluciones vecinas, y la entrada de datos.
+La evaluación de cada solución se realizó contando la cantidad de sectores que eran satisfechos por la misma.
+
+	Aunque el algoritmo es de ejecución rápida, puede no encontrar una solución perfecta.
+La calidad de las soluciones de la implementación elegida puede mejorarse si se usa alguna técnica de delocalización.
+
+	Como el enfoque en la implementación fue mayormente teórico, no se puso demasiado énfasis en explotar las optimizaciones que ofrecen las distribuciones más populares de Common Lisp.
+Puede entonces mejorarse el rendimiento si se implementa una variante paralelizada del algoritmo y se usan estructuras de datos más especializadas.
+
+	El desarrollo fue hecho en un entorno Debian Linux jessie x86-64, y la implementación de Common Lisp elegida fue SBCL 1.1.13, pero se procuró mantener la solución lo más portable posible.
+Dado la simplicidad de la misma, no se espera ningún problema si se ejecuta en cualquier implementación de Common Lisp relativamente reciente en una arquitectura soportada por la misma.
+
 \begin{center}
 \textbf{Seudocódigo de la heurística propuesta}
 \end{center}
 \begin{enumerate}
-\item Se crea una lista de los sectores involucrados.
-\item Para cada sector se le asigna una lista de condiciones a cumplir. Para cada condición se asigna 1 si el sector apoya a determinado conflicto, sino 0 (cero).
-\item Se ordena de menor a mayor la lista de sectores involucrados que apoyen a la menor cantidad de conflictos.En caso de empate se dá mayor prioridad al sector que quiere al menos una victoria.
-\item Mientras haya sectores:
+\item Se crea un conjunto de soluciones visitadas vacío
+\item Se define la aptitud máxima en cero
+\item Se crea una lista de soluciones candidato vacía
+\item Se crea una lista de soluciones a probar, iniciándola con cualquier solución arbitraria
+\item Mientras haya soluciones a probar:
 \begin{enumerate}
-\item Agregar al sector a la lista de SectoresApoyo como posible sector de apoyo al partido.En caso de empate agregar al sector que no pida vacantes en la lista.
-\item Si se ofrece la vicepresidencia se agrega automáticamente al sector a la lista SectoresApoyo.
-\item Fin mientras
+\item Se toma la primera solución a probar
+\item Se agrega al conjunto de soluciones visitadas
+\item Si su aptitud es igual a la actual:
+\begin{enumerate}
+\item Se agrega a la lista de soluciones candidato
+\item Se agregan sus vecinos a la lista de soluciones a probar
 \end{enumerate}
-\item Si la longitud de la lista de SectoresApoyo coincide con la cantidad de sectores totales, se podrá ganar la interna.
-\item Fin
+\item Si no, si su aptitud es mejor que la actual:
+\begin{enumerate}
+\item Se reemplaza el contenido de la lista de candidatos por la actual
+\item Se reemplaza el contenido de la lista de soluciones a probar por sus vecinos
+\end{enumerate}
+\end{enumerate}
+\item Salida: lista de soluciones candidato
 \end{enumerate}
 
 \item \textbf{Realizar un programa que ejecute la heurística planteada y analizar los resultados.}
+\attachlisting{../entrega3/heuristica.lisp}
+\attachlisting{../entrega3/salida.txt}
 \end{enumerate}
 
 
