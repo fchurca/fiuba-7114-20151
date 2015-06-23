@@ -1,0 +1,132 @@
+This is SBCL 1.1.13.debian, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is better! Replacing pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is fit! Added to pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is better! Replacing pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             T))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (CORRIENTE-HISTORICA
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:4
+ Candidate is better! Replacing pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             T))
+ Fitness:3
+ Candidate is worse. Skipped.
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is worse. Skipped.
+Cantidad de soluciones encontradas: 1
+Aptitud de las soluciones: 4
+ Vicepresidencia: SINDICATOS
+ Decisiones:(IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T)
+  Satisfechos: (CORRIENTE-HISTORICA JUVENTUD SINDICATOS EMPRESARIOS)
+  Insatisfechos: NIL
+* 
