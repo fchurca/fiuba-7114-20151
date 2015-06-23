@@ -45,33 +45,31 @@
                 `(,sector ,neighbour)))))
 
 (defun hillclimb (problem seed)
-  (let
-    ((visited (make-hash-table :test #'equal))
-     (to-visit (list seed))
-     (max-fitness 0)
-     (candidates ()))
-    (loop
-      while to-visit do
-      (let ((current (first to-visit)))
-        (setf to-visit (rest to-visit))
-        (unless (gethash current visited)
-          (setf (gethash current visited) t)
-          (let ((fitness (fitness problem current)))
-            (format t "Candidate: ~a~% Fitness:~a~%"
-                    current fitness)
-            (cond
-              ((< fitness max-fitness)
-               (format t " Candidate is worse. Skipped.~%"))
-              ((= fitness max-fitness)
-               (format t " Candidate is fit! Added to pool~%")
-               (setf candidates (append (list current) candidates)
-                     to-visit (append (neighbours current) to-visit)))
-              ((> fitness max-fitness)
-               (format t " Candidate is better! Replacing pool~%")
-               (setf candidates (list current)
-                     to-visit (neighbours current)
-                     max-fitness fitness)))))))
-    (values candidates max-fitness)))
+  (loop
+    with visited = (make-hash-table :test #'equal)
+    with max-fitness = 0
+    with candidates = ()
+    for to-visit = (list seed) then (rest to-visit)
+    for current = (first to-visit)
+    while to-visit do
+    (unless (gethash current visited)
+      (setf (gethash current visited) t)
+      (let ((fitness (fitness problem current)))
+        (format t "Candidate: ~a~% Fitness:~a~%"
+                current fitness)
+        (cond
+          ((< fitness max-fitness)
+           (format t " Candidate is worse. Skipped.~%"))
+          ((= fitness max-fitness)
+           (format t " Candidate is fit! Added to pool~%")
+           (setf candidates (append (list current) candidates)
+                 to-visit (append (neighbours current) to-visit)))
+          ((> fitness max-fitness)
+           (format t " Candidate is better! Replacing pool~%")
+           (setf candidates (list current)
+                 to-visit (neighbours current)
+                 max-fitness fitness)))))
+    finally (return (values candidates max-fitness))))
 
 ; Definimos lista de asuntos
 (defparameter asuntos
