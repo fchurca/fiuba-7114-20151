@@ -1,5 +1,5 @@
 ; Esto nos va a ayudar a definir todos los sectores
-(defmacro defsectores (&body body)
+(defmacro defpartido (&body body)
   (let
     ((solucion (gensym)))
     (labels
@@ -75,7 +75,7 @@
 ; Definimos lista de sectores
 (defparameter sectores
   (list '(huelga-empresarios diputados-juventud importaciones-abrir)
-        (defsectores
+        (defpartido
           corriente-historica
           (not (and huelga-empresarios
                     diputados-juventud
