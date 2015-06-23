@@ -29,7 +29,7 @@
         (return (values (null insatisfechos) satisfechos insatisfechos))))
 
 (defun fitness (sectores solucion)
-  (length (nth 1 (multiple-value-list
+  (length (second (multiple-value-list
                    (partido-satisfecho sectores solucion)))))
 
 (defun build-seed (partido asuntos &optional (generator (constantly nil)))
