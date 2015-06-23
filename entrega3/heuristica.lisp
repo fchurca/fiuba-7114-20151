@@ -45,11 +45,15 @@
             `(,asunto ,(funcall generator)))))
 
 (defun neighbours (problem solution)
-  (loop for (sector) on (second problem) by #'cddr appending
-        (loop for (asunto valor) on (second solution) by #'cddr collecting
-              (let ((neighbour (copy-list (second solution))))
-                (setf (getf neighbour asunto) (not valor))
-                `(,sector ,neighbour)))))
+  (append
+    (loop for (asunto valor) on (second solution) by #'cddr collecting
+          (let ((neighbour (copy-list (second solution))))
+            (setf (getf neighbour asunto) (not valor))
+            `(,(first solution) ,neighbour)))
+    (loop for (sector) on (second problem)
+          by #'cddr
+          if (not (eq sector (first solution)))
+          collect `(,sector ,(second solution)))))
 
 (defun hillclimb (problem seed)
   (loop

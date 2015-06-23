@@ -25,79 +25,51 @@ Candidate: (CORRIENTE-HISTORICA
  Fitness:2
  Candidate is worse. Skipped.
 Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
- Fitness:2
- Candidate is worse. Skipped.
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
+ Fitness:3
+ Candidate is fit! Added to pool
 Candidate: (JUVENTUD
             (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
              T))
  Fitness:3
  Candidate is fit! Added to pool
 Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS T))
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
  Fitness:3
  Candidate is fit! Added to pool
-Candidate: (CORRIENTE-HISTORICA
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (CORRIENTE-HISTORICA
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS T))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (CORRIENTE-HISTORICA
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
- Fitness:2
- Candidate is worse. Skipped.
 Candidate: (JUVENTUD
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:3
+ Candidate is fit! Added to pool
+Candidate: (EMPRESARIOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             T))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (SINDICATOS
+            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
+             NIL))
+ Fitness:2
+ Candidate is worse. Skipped.
+Candidate: (EMPRESARIOS
             (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
-             NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (CORRIENTE-HISTORICA
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             NIL))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (JUVENTUD
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (SINDICATOS
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (SINDICATOS
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             NIL))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (SINDICATOS
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS NIL))
- Fitness:3
- Candidate is fit! Added to pool
-Candidate: (SINDICATOS
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
-             NIL))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (SINDICATOS
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
  Fitness:3
  Candidate is fit! Added to pool
 Candidate: (SINDICATOS
@@ -107,20 +79,6 @@ Candidate: (SINDICATOS
 Candidate: (SINDICATOS
             (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
              T))
- Fitness:3
- Candidate is worse. Skipped.
-Candidate: (EMPRESARIOS
-            (IMPORTACIONES-ABRIR T DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS T))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (EMPRESARIOS
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD NIL HUELGA-EMPRESARIOS
-             T))
- Fitness:2
- Candidate is worse. Skipped.
-Candidate: (EMPRESARIOS
-            (IMPORTACIONES-ABRIR NIL DIPUTADOS-JUVENTUD T HUELGA-EMPRESARIOS
-             NIL))
  Fitness:3
  Candidate is worse. Skipped.
 Cantidad de soluciones encontradas: 1
