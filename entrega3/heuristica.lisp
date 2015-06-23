@@ -8,7 +8,7 @@
          (loop for clause in body collect
                (if (listp clause)
                  (walk clause)
-                 (if (find clause '(and not or))
+                 (if (member clause '(and not or))
                    clause
                    `(getf ,solucion ',clause))))))
       `(list
